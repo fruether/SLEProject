@@ -4,6 +4,7 @@ if __name__ is not None and "." in __name__:
     from .csParser import csParser
 else:
     from csParser import csParser
+import facts
 
 # This class defines a complete listener for a parse tree produced by csParser.
 class csListener(ParseTreeListener):
@@ -32,6 +33,15 @@ class csListener(ParseTreeListener):
 
     # Exit a parse tree produced by csParser#r_stmt.
     def exitR_stmt(self, ctx:csParser.R_stmtContext):
+        pass
+
+
+    # Enter a parse tree produced by csParser#block.
+    def enterBlock(self, ctx:csParser.BlockContext):
+        pass
+
+    # Exit a parse tree produced by csParser#block.
+    def exitBlock(self, ctx:csParser.BlockContext):
         pass
 
 

@@ -24,10 +24,10 @@ def create_cartesian_product(first, second, *args):
     if not isinstance(second, list):
         second = [second]
     other = []
-    for x in args:
-        if not list(x):
-            x = [x]
-        other.append(x)
+    for arg in args:
+        if not list(arg):
+            arg = [arg]
+        other.append(arg)
     return list(itertools.product(first, second, *other))
 
 def show():

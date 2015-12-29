@@ -26,3 +26,21 @@ class ExprListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by ExprParser#decl.
+    def enterDecl(self, ctx:ExprParser.DeclContext):
+        pass
+
+    # Exit a parse tree produced by ExprParser#decl.
+    def exitDecl(self, ctx:ExprParser.DeclContext):
+        pass
+
+
+    # Enter a parse tree produced by ExprParser#identifier.
+    def enterIdentifier(self, ctx:ExprParser.IdentifierContext):
+        pass
+
+    # Exit a parse tree produced by ExprParser#identifier.
+    def exitIdentifier(self, ctx:ExprParser.IdentifierContext):
+        pass
+
+

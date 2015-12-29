@@ -10,4 +10,4 @@ begin
       write x;
     }
   end
-  end
+end
