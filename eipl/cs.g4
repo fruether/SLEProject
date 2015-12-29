@@ -10,8 +10,9 @@ semantic.add_scope("main")
 scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
-r_decl : VAR t = r_type (NAME ',')* NAME ('=' expr)? ';'
-         {facts.create_fact("typeOF", $t.text, $NAME.text)}
+r_decl : VAR t = r_type (name ',')* l = name ('=' expr)? ';'
+         {facts.create_fact("typeOF", $t.text, $l.nameList)}
+         {semantic.release_node()}
        | 'proc' NAME {semantic.add_scope($NAME.text)} block {semantic.remove_scope()};
 
 /* Statements */
@@ -37,6 +38,12 @@ factor : INT
         | '(' expr ')' ;
 
 r_type: INTEGER;
+
+name returns [nameList]:  NAME{
+semantic.add_context("Name", $NAME.text)
+$nameList = semantic.terminal_list("Name")
+};
+
 
 BOOLEAN : 'bool';
 INTEGER : 'int';

@@ -3,8 +3,6 @@ import itertools
 
 facts = []
 
-
-
 def create_fact(type, *args):
     if len(args) == 2:
         facts.extend( map(lambda x :  (type,) + x, create_cartesian_product(args[0], args[1]))  )

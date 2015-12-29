@@ -1,6 +1,7 @@
 __author__ = 'freddy'
 
 scope_stack = []
+node_context = {}
 
 def remove_scope():
     global scope_stack
@@ -18,3 +19,17 @@ def init():
     global scope_stack
     scope_stack = []
 
+def add_context(terminal, value):
+    global node_context
+    if terminal in node_context.keys():
+        node_context[terminal] +=value
+    else:
+        node_context[terminal] = [value]
+
+def terminal_list(terminal):
+    global node_context
+    return node_context[terminal]
+
+def release_node():
+    global node_context
+    node_context = {}
