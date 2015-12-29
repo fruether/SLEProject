@@ -10,7 +10,7 @@ semantic.add_scope("main")
 scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
-r_decl : VAR t = r_type NAME ('=' expr)? ';'
+r_decl : VAR (r_type NAME ',')* t = r_type NAME ('=' expr)? ';'
          {facts.create_fact("typeOF", $t.text, $NAME.text)}
        | 'proc' NAME {semantic.add_scope($NAME.text)} block {semantic.remove_scope()};
 
