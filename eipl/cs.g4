@@ -5,6 +5,7 @@ from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")
+nameList = []
 }
 
 scope : 'begin' (r_decl)* r_stmt 'end';
@@ -42,6 +43,8 @@ r_type: INTEGER;
 name returns [nameList]:  NAME{
 semantic.add_context("Name", $NAME.text)
 $nameList = semantic.terminal_list("Name")
+global nameList
+nameList = $nameList
 };
 
 

@@ -7,6 +7,7 @@ from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")
+nameList = []
 
 
 def serializedATN():

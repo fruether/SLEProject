@@ -9,6 +9,7 @@ from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")
+nameList = []
 
 
 # This class defines a complete listener for a parse tree produced by csParser.

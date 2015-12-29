@@ -8,6 +8,7 @@ from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")
+nameList = []
 
 def serializedATN():
     with StringIO() as buf:
@@ -282,7 +283,7 @@ class csParser ( Parser ):
 
                 self.state = 45
                 self.match(csParser.T__4)
-                facts.create_fact("typeOF", (None if localctx.t is None else self._input.getText((localctx.t.start,localctx.t.stop))), localctx.l.nameList)
+                facts.create_fact("typeOF", (None if localctx.t is None else self._input.getText((localctx.t.start,localctx.t.stop))), nameList)
                 semantic.release_node()
 
             elif token in [csParser.T__5]:
@@ -829,6 +830,8 @@ class csParser ( Parser ):
 
             semantic.add_context("Name", (None if localctx._NAME is None else localctx._NAME.text))
             localctx.nameList = semantic.terminal_list("Name")
+            global nameList
+            nameList = localctx.nameList
 
         except RecognitionException as re:
             localctx.exception = re
