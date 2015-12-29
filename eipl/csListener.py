@@ -5,8 +5,7 @@ if __name__ is not None and "." in __name__:
 else:
     from csParser import csParser
 
-import facts
-import semantic
+from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")

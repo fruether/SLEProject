@@ -3,8 +3,7 @@ from antlr4 import *
 from io import StringIO
 
 
-import facts
-import semantic
+from libs import facts, semantic
 
 semantic.init()
 semantic.add_scope("main")
