@@ -1,5 +1,5 @@
 begin
-  var int x = 0;
+  var int x,y,z = 0;
   proc p { x = x * 2; }
   proc q { call p; }
   begin
