@@ -3,46 +3,53 @@
 from antlr4 import *
 from io import StringIO
 
+
 import facts
+import semantic
+
+semantic.init()
+semantic.add_scope("main")
+
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\33")
-        buf.write("u\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
+        buf.write("y\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b")
         buf.write("\t\b\4\t\t\t\4\n\t\n\3\2\3\2\7\2\27\n\2\f\2\16\2\32\13")
         buf.write("\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3")
-        buf.write("\3\3\5\3*\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4")
-        buf.write("\3\4\3\4\3\4\5\49\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4")
-        buf.write("\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4J\n\4\3\5\3\5\7\5N\n\5")
-        buf.write("\f\5\16\5Q\13\5\3\5\3\5\3\6\3\6\3\6\5\6X\n\6\3\7\3\7\3")
-        buf.write("\7\5\7]\n\7\3\7\3\7\3\7\5\7b\n\7\5\7d\n\7\3\b\3\b\3\b")
-        buf.write("\5\bi\n\b\3\t\3\t\3\t\3\t\3\t\3\t\5\tq\n\t\3\n\3\n\3\n")
-        buf.write("\2\2\13\2\4\6\b\n\f\16\20\22\2\2}\2\24\3\2\2\2\4)\3\2")
-        buf.write("\2\2\6I\3\2\2\2\bK\3\2\2\2\nT\3\2\2\2\fc\3\2\2\2\16e\3")
-        buf.write("\2\2\2\20p\3\2\2\2\22r\3\2\2\2\24\30\7\3\2\2\25\27\5\4")
-        buf.write("\3\2\26\25\3\2\2\2\27\32\3\2\2\2\30\26\3\2\2\2\30\31\3")
-        buf.write("\2\2\2\31\33\3\2\2\2\32\30\3\2\2\2\33\34\5\6\4\2\34\35")
-        buf.write("\7\4\2\2\35\3\3\2\2\2\36\37\7\30\2\2\37 \5\22\n\2 !\7")
-        buf.write("\32\2\2!\"\7\5\2\2\"#\5\n\6\2#$\7\6\2\2$%\b\3\1\2%*\3")
-        buf.write("\2\2\2&\'\7\7\2\2\'(\7\32\2\2(*\5\b\5\2)\36\3\2\2\2)&")
-        buf.write("\3\2\2\2*\5\3\2\2\2+J\7\6\2\2,-\7\32\2\2-.\7\5\2\2./\5")
-        buf.write("\n\6\2/\60\7\6\2\2\60J\3\2\2\2\61\62\7\b\2\2\62\63\7\t")
-        buf.write("\2\2\63\64\5\n\6\2\64\65\7\n\2\2\658\5\6\4\2\66\67\7\13")
-        buf.write("\2\2\679\5\6\4\28\66\3\2\2\289\3\2\2\29J\3\2\2\2:;\7\f")
-        buf.write("\2\2;<\7\t\2\2<=\5\n\6\2=>\7\n\2\2>?\5\6\4\2?J\3\2\2\2")
-        buf.write("@J\5\2\2\2AB\7\r\2\2BC\7\32\2\2CJ\7\6\2\2DE\7\16\2\2E")
-        buf.write("F\5\n\6\2FG\7\6\2\2GJ\3\2\2\2HJ\5\b\5\2I+\3\2\2\2I,\3")
-        buf.write("\2\2\2I\61\3\2\2\2I:\3\2\2\2I@\3\2\2\2IA\3\2\2\2ID\3\2")
-        buf.write("\2\2IH\3\2\2\2J\7\3\2\2\2KO\7\17\2\2LN\5\6\4\2ML\3\2\2")
-        buf.write("\2NQ\3\2\2\2OM\3\2\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2R")
-        buf.write("S\7\20\2\2S\t\3\2\2\2TW\5\f\7\2UV\7\21\2\2VX\5\n\6\2W")
-        buf.write("U\3\2\2\2WX\3\2\2\2X\13\3\2\2\2Y\\\5\16\b\2Z[\7\22\2\2")
-        buf.write("[]\5\f\7\2\\Z\3\2\2\2\\]\3\2\2\2]d\3\2\2\2^a\5\16\b\2")
-        buf.write("_`\7\23\2\2`b\5\f\7\2a_\3\2\2\2ab\3\2\2\2bd\3\2\2\2cY")
-        buf.write("\3\2\2\2c^\3\2\2\2d\r\3\2\2\2eh\5\20\t\2fg\7\24\2\2gi")
-        buf.write("\5\16\b\2hf\3\2\2\2hi\3\2\2\2i\17\3\2\2\2jq\7\31\2\2k")
-        buf.write("q\7\32\2\2lm\7\t\2\2mn\5\n\6\2no\7\n\2\2oq\3\2\2\2pj\3")
-        buf.write("\2\2\2pk\3\2\2\2pl\3\2\2\2q\21\3\2\2\2rs\7\26\2\2s\23")
-        buf.write("\3\2\2\2\r\30)8IOW\\achp")
+        buf.write("\3\3\3\3\3\3\3\3\5\3-\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4")
+        buf.write("\3\4\3\4\3\4\3\4\3\4\3\4\5\4<\n\4\3\4\3\4\3\4\3\4\3\4")
+        buf.write("\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4N\n\4")
+        buf.write("\3\5\3\5\7\5R\n\5\f\5\16\5U\13\5\3\5\3\5\3\6\3\6\3\6\5")
+        buf.write("\6\\\n\6\3\7\3\7\3\7\5\7a\n\7\3\7\3\7\3\7\5\7f\n\7\5\7")
+        buf.write("h\n\7\3\b\3\b\3\b\5\bm\n\b\3\t\3\t\3\t\3\t\3\t\3\t\5\t")
+        buf.write("u\n\t\3\n\3\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\2\u0081")
+        buf.write("\2\24\3\2\2\2\4,\3\2\2\2\6M\3\2\2\2\bO\3\2\2\2\nX\3\2")
+        buf.write("\2\2\fg\3\2\2\2\16i\3\2\2\2\20t\3\2\2\2\22v\3\2\2\2\24")
+        buf.write("\30\7\3\2\2\25\27\5\4\3\2\26\25\3\2\2\2\27\32\3\2\2\2")
+        buf.write("\30\26\3\2\2\2\30\31\3\2\2\2\31\33\3\2\2\2\32\30\3\2\2")
+        buf.write("\2\33\34\5\6\4\2\34\35\7\4\2\2\35\3\3\2\2\2\36\37\7\30")
+        buf.write("\2\2\37 \5\22\n\2 !\7\32\2\2!\"\7\5\2\2\"#\5\n\6\2#$\7")
+        buf.write("\6\2\2$%\b\3\1\2%-\3\2\2\2&\'\7\7\2\2\'(\7\32\2\2()\b")
+        buf.write("\3\1\2)*\5\b\5\2*+\b\3\1\2+-\3\2\2\2,\36\3\2\2\2,&\3\2")
+        buf.write("\2\2-\5\3\2\2\2.N\7\6\2\2/\60\7\32\2\2\60\61\7\5\2\2\61")
+        buf.write("\62\5\n\6\2\62\63\7\6\2\2\63N\3\2\2\2\64\65\7\b\2\2\65")
+        buf.write("\66\7\t\2\2\66\67\5\n\6\2\678\7\n\2\28;\5\6\4\29:\7\13")
+        buf.write("\2\2:<\5\6\4\2;9\3\2\2\2;<\3\2\2\2<N\3\2\2\2=>\7\f\2\2")
+        buf.write(">?\7\t\2\2?@\5\n\6\2@A\7\n\2\2AB\5\6\4\2BN\3\2\2\2CN\5")
+        buf.write("\2\2\2DE\7\r\2\2EF\7\32\2\2FG\7\6\2\2GN\b\4\1\2HI\7\16")
+        buf.write("\2\2IJ\5\n\6\2JK\7\6\2\2KN\3\2\2\2LN\5\b\5\2M.\3\2\2\2")
+        buf.write("M/\3\2\2\2M\64\3\2\2\2M=\3\2\2\2MC\3\2\2\2MD\3\2\2\2M")
+        buf.write("H\3\2\2\2ML\3\2\2\2N\7\3\2\2\2OS\7\17\2\2PR\5\6\4\2QP")
+        buf.write("\3\2\2\2RU\3\2\2\2SQ\3\2\2\2ST\3\2\2\2TV\3\2\2\2US\3\2")
+        buf.write("\2\2VW\7\20\2\2W\t\3\2\2\2X[\5\f\7\2YZ\7\21\2\2Z\\\5\n")
+        buf.write("\6\2[Y\3\2\2\2[\\\3\2\2\2\\\13\3\2\2\2]`\5\16\b\2^_\7")
+        buf.write("\22\2\2_a\5\f\7\2`^\3\2\2\2`a\3\2\2\2ah\3\2\2\2be\5\16")
+        buf.write("\b\2cd\7\23\2\2df\5\f\7\2ec\3\2\2\2ef\3\2\2\2fh\3\2\2")
+        buf.write("\2g]\3\2\2\2gb\3\2\2\2h\r\3\2\2\2il\5\20\t\2jk\7\24\2")
+        buf.write("\2km\5\16\b\2lj\3\2\2\2lm\3\2\2\2m\17\3\2\2\2nu\7\31\2")
+        buf.write("\2ou\7\32\2\2pq\7\t\2\2qr\5\n\6\2rs\7\n\2\2su\3\2\2\2")
+        buf.write("tn\3\2\2\2to\3\2\2\2tp\3\2\2\2u\21\3\2\2\2vw\7\26\2\2")
+        buf.write("w\23\3\2\2\2\r\30,;MS[`eglt")
         return buf.getvalue()
 
 
@@ -223,7 +230,7 @@ class csParser ( Parser ):
         localctx = csParser.R_declContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_r_decl)
         try:
-            self.state = 39
+            self.state = 42
             token = self._input.LA(1)
             if token in [csParser.VAR]:
                 self.enterOuterAlt(localctx, 1)
@@ -239,16 +246,18 @@ class csParser ( Parser ):
                 self.expr()
                 self.state = 33
                 self.match(csParser.T__3)
-                facts.create_fact("", (None if localctx.t is None else self._input.getText((localctx.t.start,localctx.t.stop))), (None if localctx._NAME is None else localctx._NAME.text))
+                facts.create_fact("typeOF", (None if localctx.t is None else self._input.getText((localctx.t.start,localctx.t.stop))), (None if localctx._NAME is None else localctx._NAME.text))
 
             elif token in [csParser.T__4]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 36
                 self.match(csParser.T__4)
                 self.state = 37
-                self.match(csParser.NAME)
-                self.state = 38
+                localctx._NAME = self.match(csParser.NAME)
+                semantic.add_scope((None if localctx._NAME is None else localctx._NAME.text))
+                self.state = 39
                 self.block()
+                semantic.remove_scope()
 
             else:
                 raise NoViableAltException(self)
@@ -266,6 +275,7 @@ class csParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+            self._NAME = None # Token
 
         def NAME(self):
             return self.getToken(csParser.NAME, 0)
@@ -308,85 +318,86 @@ class csParser ( Parser ):
         localctx = csParser.R_stmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_r_stmt)
         try:
-            self.state = 71
+            self.state = 75
             token = self._input.LA(1)
             if token in [csParser.T__3]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 41
+                self.state = 44
                 self.match(csParser.T__3)
 
             elif token in [csParser.NAME]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 42
-                self.match(csParser.NAME)
-                self.state = 43
-                self.match(csParser.T__2)
-                self.state = 44
-                self.expr()
                 self.state = 45
+                self.match(csParser.NAME)
+                self.state = 46
+                self.match(csParser.T__2)
+                self.state = 47
+                self.expr()
+                self.state = 48
                 self.match(csParser.T__3)
 
             elif token in [csParser.T__5]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 47
-                self.match(csParser.T__5)
-                self.state = 48
-                self.match(csParser.T__6)
-                self.state = 49
-                self.expr()
                 self.state = 50
-                self.match(csParser.T__7)
+                self.match(csParser.T__5)
                 self.state = 51
-                self.r_stmt()
+                self.match(csParser.T__6)
+                self.state = 52
+                self.expr()
+                self.state = 53
+                self.match(csParser.T__7)
                 self.state = 54
+                self.r_stmt()
+                self.state = 57
                 la_ = self._interp.adaptivePredict(self._input,2,self._ctx)
                 if la_ == 1:
-                    self.state = 52
+                    self.state = 55
                     self.match(csParser.T__8)
-                    self.state = 53
+                    self.state = 56
                     self.r_stmt()
 
 
 
             elif token in [csParser.T__9]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 56
-                self.match(csParser.T__9)
-                self.state = 57
-                self.match(csParser.T__6)
-                self.state = 58
-                self.expr()
                 self.state = 59
-                self.match(csParser.T__7)
+                self.match(csParser.T__9)
                 self.state = 60
+                self.match(csParser.T__6)
+                self.state = 61
+                self.expr()
+                self.state = 62
+                self.match(csParser.T__7)
+                self.state = 63
                 self.r_stmt()
 
             elif token in [csParser.T__0]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 62
+                self.state = 65
                 self.scope()
 
             elif token in [csParser.T__10]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 63
+                self.state = 66
                 self.match(csParser.T__10)
-                self.state = 64
-                self.match(csParser.NAME)
-                self.state = 65
+                self.state = 67
+                localctx._NAME = self.match(csParser.NAME)
+                self.state = 68
                 self.match(csParser.T__3)
+                facts.create_fact("callTo", semantic.get_current_scope(), (None if localctx._NAME is None else localctx._NAME.text))
 
             elif token in [csParser.T__11]:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 66
+                self.state = 70
                 self.match(csParser.T__11)
-                self.state = 67
+                self.state = 71
                 self.expr()
-                self.state = 68
+                self.state = 72
                 self.match(csParser.T__3)
 
             elif token in [csParser.T__12]:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 70
+                self.state = 74
                 self.block()
 
             else:
@@ -434,19 +445,19 @@ class csParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 73
-            self.match(csParser.T__12)
             self.state = 77
+            self.match(csParser.T__12)
+            self.state = 81
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.T__0) | (1 << csParser.T__3) | (1 << csParser.T__5) | (1 << csParser.T__9) | (1 << csParser.T__10) | (1 << csParser.T__11) | (1 << csParser.T__12) | (1 << csParser.NAME))) != 0):
-                self.state = 74
+                self.state = 78
                 self.r_stmt()
-                self.state = 79
+                self.state = 83
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
-            self.state = 80
+            self.state = 84
             self.match(csParser.T__13)
         except RecognitionException as re:
             localctx.exception = re
@@ -491,14 +502,14 @@ class csParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 82
+            self.state = 86
             self.aexpr()
-            self.state = 85
+            self.state = 89
             _la = self._input.LA(1)
             if _la==csParser.T__14:
-                self.state = 83
+                self.state = 87
                 self.match(csParser.T__14)
-                self.state = 84
+                self.state = 88
                 self.expr()
 
 
@@ -544,18 +555,18 @@ class csParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_aexpr)
         self._la = 0 # Token type
         try:
-            self.state = 97
+            self.state = 101
             la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 87
+                self.state = 91
                 self.term()
-                self.state = 90
+                self.state = 94
                 _la = self._input.LA(1)
                 if _la==csParser.T__15:
-                    self.state = 88
+                    self.state = 92
                     self.match(csParser.T__15)
-                    self.state = 89
+                    self.state = 93
                     self.aexpr()
 
 
@@ -563,14 +574,14 @@ class csParser ( Parser ):
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 92
+                self.state = 96
                 self.term()
-                self.state = 95
+                self.state = 99
                 _la = self._input.LA(1)
                 if _la==csParser.T__16:
-                    self.state = 93
+                    self.state = 97
                     self.match(csParser.T__16)
-                    self.state = 94
+                    self.state = 98
                     self.aexpr()
 
 
@@ -620,14 +631,14 @@ class csParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 99
+            self.state = 103
             self.factor()
-            self.state = 102
+            self.state = 106
             _la = self._input.LA(1)
             if _la==csParser.T__17:
-                self.state = 100
+                self.state = 104
                 self.match(csParser.T__17)
-                self.state = 101
+                self.state = 105
                 self.term()
 
 
@@ -674,25 +685,25 @@ class csParser ( Parser ):
         localctx = csParser.FactorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 14, self.RULE_factor)
         try:
-            self.state = 110
+            self.state = 114
             token = self._input.LA(1)
             if token in [csParser.INT]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 104
+                self.state = 108
                 self.match(csParser.INT)
 
             elif token in [csParser.NAME]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 105
+                self.state = 109
                 self.match(csParser.NAME)
 
             elif token in [csParser.T__6]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 106
+                self.state = 110
                 self.match(csParser.T__6)
-                self.state = 107
+                self.state = 111
                 self.expr()
-                self.state = 108
+                self.state = 112
                 self.match(csParser.T__7)
 
             else:
@@ -735,7 +746,7 @@ class csParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_r_type)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 112
+            self.state = 116
             self.match(csParser.INTEGER)
         except RecognitionException as re:
             localctx.exception = re

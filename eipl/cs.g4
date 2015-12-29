@@ -1,13 +1,19 @@
 grammar cs;
 
-@header {import facts}
+@header {
+import facts
+import semantic
+
+semantic.init()
+semantic.add_scope("main")
+}
 
 scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
 r_decl : VAR t = r_type NAME '=' expr ';'
          {facts.create_fact("typeOF", $t.text, $NAME.text)}
-       | 'proc' NAME block;
+       | 'proc' NAME {semantic.add_scope($NAME.text)} block {semantic.remove_scope()};
 
 /* Statements */
 r_stmt : ';'
@@ -15,7 +21,7 @@ r_stmt : ';'
     | 'if' '(' expr ')' r_stmt ( 'else' r_stmt )?
     | 'while' '(' expr ')' r_stmt
     | scope
-    | 'call' NAME ';'
+    | 'call' NAME ';' {facts.create_fact("callTo", semantic.get_current_scope(), $NAME.text)}
     | 'write' expr ';'
     | block
     ;

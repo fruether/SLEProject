@@ -5,8 +5,10 @@ from csLexer import csLexer
 from csParser import csParser
 import sys
 import facts
+import semantic
 
 def main(argv):
+
     input = FileStream(argv[1])
     lexer = csLexer(input)
     stream = CommonTokenStream(lexer)
