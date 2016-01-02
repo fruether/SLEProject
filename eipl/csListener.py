@@ -5,11 +5,12 @@ if __name__ is not None and "." in __name__:
 else:
     from csParser import csParser
 
-from libs import facts, semantic
+from libs import facts, semantic, variables
 
 semantic.init()
 semantic.add_scope("main")
-nameList = []
+variables.nameList = []
+variables.staticOpt = None
 
 
 # This class defines a complete listener for a parse tree produced by csParser.
@@ -102,6 +103,15 @@ class csListener(ParseTreeListener):
 
     # Exit a parse tree produced by csParser#name.
     def exitName(self, ctx:csParser.NameContext):
+        pass
+
+
+    # Enter a parse tree produced by csParser#static.
+    def enterStatic(self, ctx:csParser.StaticContext):
+        pass
+
+    # Exit a parse tree produced by csParser#static.
+    def exitStatic(self, ctx:csParser.StaticContext):
         pass
 
 

@@ -3,6 +3,9 @@ __author__ = 'freddy'
 scope_stack = []
 node_context = {}
 
+
+import libs.variables
+
 def remove_scope():
     global scope_stack
     scope_stack.pop()
@@ -28,8 +31,13 @@ def add_context(terminal, value):
 
 def terminal_list(terminal):
     global node_context
-    return node_context[terminal]
+    return node_context[terminal] if terminal in node_context.keys() else []
 
 def release_node():
     global node_context
     node_context = {}
+
+def exec_block(context, terminal, prefix, value):
+    variable = terminal + prefix
+    print (getattr(libs.variables, variable))
+    return value

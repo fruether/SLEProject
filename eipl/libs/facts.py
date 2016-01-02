@@ -9,7 +9,7 @@ def create_fact(type, *args):
     elif len(args) > 2 :
         facts.extend( map(lambda x :  (type,) + x, create_cartesian_product(args[0], args[1], args[2:-1])))
     else:
-        if not isinstance(list, args[0]):
+        if not isinstance(args[0], list):
             first = [args[0]]
         else:
             first = args[0]
@@ -31,3 +31,8 @@ def create_cartesian_product(first, second, *args):
 def show():
     for x in facts:
         print (x)
+
+def if_not_empty(cond, block):
+    if cond is not None and len(cond) >= 1:
+        for b in block:
+            create_fact(*b)

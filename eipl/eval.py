@@ -4,7 +4,7 @@ from antlr4 import *
 from csLexer import csLexer
 from csParser import csParser
 import sys
-from libs import facts, semantic
+from libs import facts
 
 def main(argv):
 
