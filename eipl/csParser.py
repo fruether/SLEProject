@@ -845,12 +845,7 @@ class csParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 137
             localctx._NAME = self.match(csParser.NAME)
-
-            semantic.add_context("Name", (None if localctx._NAME is None else localctx._NAME.text))
-
-            variables.nameList = semantic.terminal_list("Name")
-            nameElement = (None if localctx._NAME is None else localctx._NAME.text)
-
+            nameElement = semantic.exec_block("name","List", (None if localctx._NAME is None else localctx._NAME.text))
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -892,13 +887,7 @@ class csParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 140
             localctx._STATIC = self.match(csParser.STATIC)
-
-
-            semantic.add_context("Static", (None if localctx._STATIC is None else localctx._STATIC.text))
-            variables.staticOpt = semantic.terminal_list("Static")
-            staticElement = (None if localctx._STATIC is None else localctx._STATIC.text)
-            semantic.exec_block(self, "static","Opt", "")
-
+            staticElement = semantic.exec_block("static","Opt", (None if localctx._STATIC is None else localctx._STATIC.text))
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

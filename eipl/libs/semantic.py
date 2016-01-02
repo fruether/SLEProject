@@ -37,7 +37,10 @@ def release_node():
     global node_context
     node_context = {}
 
-def exec_block(context, terminal, prefix, value):
+def exec_block(terminal, prefix, value):
     variable = terminal + prefix
-    print (getattr(libs.variables, variable))
+    add_context(terminal, value)
+    leftSide = terminal_list(terminal)
+    setattr(libs.variables, variable, leftSide)
+    
     return value

@@ -42,20 +42,11 @@ factor : INT
 
 r_type: INTEGER;
 
-name returns [nameElement]:  NAME{
-semantic.add_context("Name", $NAME.text)
+name returns [nameElement]:  NAME
+{nameElement = semantic.exec_block("name","List", $NAME.text)};
 
-variables.nameList = semantic.terminal_list("Name")
-nameElement = $NAME.text
-};
-
-static returns [staticElement]: STATIC {
-
-semantic.add_context("Static", $STATIC.text)
-variables.staticOpt = semantic.terminal_list("Static")
-staticElement = $STATIC.text
-semantic.exec_block("static","Opt", "")
-};
+static returns [staticElement]: STATIC
+{staticElement = semantic.exec_block("static","Opt", $STATIC.text)};
 
 
 BOOLEAN : 'bool';
