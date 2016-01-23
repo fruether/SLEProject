@@ -34,7 +34,7 @@ def show():
         print (x)
 
 def if_not_empty(cond, block):
-    if cond is not None and len(cond) >= 1:
+    if cond is not None:
         for b in block:
             create_fact(*b)
 

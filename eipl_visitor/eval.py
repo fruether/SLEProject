@@ -5,6 +5,7 @@ from csLexer import csLexer
 from csParser import csParser
 import sys
 from libs import facts
+from FactExtractorVisitor import FactExtractionVisitor
 
 def main(argv):
 
@@ -13,6 +14,8 @@ def main(argv):
     stream = CommonTokenStream(lexer)
     parser = csParser(stream)
     tree = parser.scope()
+    extractor = FactExtractionVisitor()
+    extractor.visit(tree)
     facts.show()
 if __name__ == '__main__':
     main(sys.argv)
