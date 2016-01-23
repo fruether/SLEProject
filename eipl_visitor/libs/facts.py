@@ -11,10 +11,14 @@ def create_fact(type, *args):
         facts.extend( map(lambda x :  (type,) + x, create_cartesian_product(args[0], args[1], args[2:-1])))
     else:
         if not isinstance(args[0], list):
-            first = [args[0]]
+            start = [args[0]]
         else:
-            first = args[0]
-        facts.extend([(type, x) for x in first])
+            start = args[0]
+        if isinstance(start[0], tuple):
+            facts.extend([(type,) + x for x in start])
+
+        else:
+            facts.extend([(type, x) for x in start])
 
 
 def create_cartesian_product(first, second, *args):
@@ -46,7 +50,8 @@ def next(leftList, rightList):
         sys.stderr.write("Both should be lists")
     set = leftList + rightList
     result = zip(set, set[1:])
-    return  list(result)
+    return list(result)
+
 
 """
 First element of a list.
