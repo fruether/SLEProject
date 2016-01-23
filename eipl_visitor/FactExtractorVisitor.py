@@ -34,9 +34,6 @@ class FactExtractionVisitor(csVisitor):
         if(len(result) >= 2):
             facts.create_fact("succ", facts.next(result, []))
 
-        #return result
-        #facts.create_fact("succ", facts.next(result, []))
-
     def aggregateResult(self, aggregate, nextResult):
         if aggregate is None:
             return nextResult if isinstance(nextResult, list) else [nextResult] if nextResult is not None else []

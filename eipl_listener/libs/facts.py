@@ -14,7 +14,11 @@ def create_fact(type, *args):
             first = [args[0]]
         else:
             first = args[0]
-        facts.extend([(type, x) for x in first])
+
+        if isinstance(first[0], tuple):
+            facts.extend([(type,) + x for x in first])
+        else:
+            facts.extend([(type, x) for x in first])
 
 
 def create_cartesian_product(first, second, *args):
