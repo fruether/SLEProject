@@ -5,7 +5,7 @@ scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
 r_decl : (STATIC)? VAR t = r_type (NAME ',')* NAME ('=' expr)? ';'
-       | 'proc' name  block;
+       | 'proc' NAME  block;
 
 /* Statements */
 r_stmt : ';'

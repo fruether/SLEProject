@@ -22,6 +22,11 @@ def init():
     global scope_stack
     scope_stack = []
 
+def unwrapLexims(lexims):
+    result = []
+    for lexim in lexims:
+        result.append(lexim.getText())
+    return result
 '''
 def add_context(terminal, value):
     global node_context

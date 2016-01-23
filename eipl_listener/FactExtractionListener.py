@@ -4,12 +4,15 @@ from csListener import csListener
 from libs import semantic
 from libs import facts
 class FactExtractionListener(csListener):
-     # Enter a parse tree produced by csParser#scope.
+
     def enterR_decl(self, ctx):
         if ctx.block() is not None:
-
-            routine_name = ctx.name().NAME().getText()
+            routine_name = ctx.NAME()[0].getText()
             semantic.add_scope(routine_name)
+        else:
+            variables =  semantic.unwrapLexims(ctx.NAME())
+            facts.if_not_empty(ctx.STATIC(), [("static",variables)])
+            facts.create_fact("typeOf", ctx.r_type().getText() , variables)
 
     def exitR_delc(self, ctx):
         if ctx.block() is not None:
