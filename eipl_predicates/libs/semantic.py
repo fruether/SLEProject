@@ -25,7 +25,7 @@ def init():
 def add_context(terminal, value):
     global node_context
     if terminal in node_context.keys():
-        node_context[terminal] +=value
+        node_context[terminal] += [value]
     else:
         node_context[terminal] = [value]
 
@@ -42,5 +42,4 @@ def exec_block(terminal, prefix, value):
     add_context(terminal, value)
     leftSide = terminal_list(terminal)
     setattr(libs.variables, variable, leftSide)
-    
     return value

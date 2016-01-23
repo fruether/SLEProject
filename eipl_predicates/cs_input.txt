@@ -8,6 +8,7 @@ begin
     {
       call q;
       write x;
+      x = y +z;
     }
   end
 end

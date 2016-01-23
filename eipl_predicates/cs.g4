@@ -29,7 +29,10 @@ r_stmt : ';'
     | block
     ;
 
-block : '{' ( r_stmt )* '}';
+block : '{' (s=r_stmt {{semantic.exec_block("block","List", $s.text)}})* '}'
+         {{facts.create_fact("succ", facts.next(variables.blockList, []))}}
+         {{semantic.release_node()}}
+;
 /* Expressions */
 expr : aexpr ( '>=' expr )? ;
 aexpr : term ( '+' aexpr )?
