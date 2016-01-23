@@ -1,0 +1,13 @@
+begin
+  var int x,y,z = 0;
+  proc p { x = x * 2; }
+  proc q { call p; }
+  begin
+    static var int x = 5;
+    proc p { x = x + 1; }
+    {
+      call q;
+      write x;
+    }
+  end
+end

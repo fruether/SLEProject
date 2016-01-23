@@ -13,7 +13,7 @@ class FactExtractionListener(csListener):
             routine_name = ctx.NAME()[0].getText()
             semantic.add_scope(routine_name)
         else:
-            variables =  semantic.unwrapLexims(ctx.NAME())
+            variables = semantic.unwrapLexims(ctx.NAME())
             facts.if_not_empty(ctx.STATIC(), [("static",variables)])
             facts.create_fact("typeOf", ctx.r_type().getText() , variables)
 
