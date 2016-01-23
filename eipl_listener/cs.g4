@@ -5,7 +5,7 @@ scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
 r_decl : (STATIC)? VAR t = r_type (NAME ',')* NAME ('=' expr)? ';'
-       | 'proc' NAME  block;
+       | 'proc' name  block;
 
 /* Statements */
 r_stmt : ';'
@@ -31,7 +31,7 @@ factor : INT
 
 r_type: INTEGER;
 
-
+name : NAME;
 BOOLEAN : 'bool';
 INTEGER : 'int';
 CHAR : 'char';
