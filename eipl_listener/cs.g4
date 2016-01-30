@@ -4,7 +4,7 @@ grammar cs;
 scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
-r_decl : (STATIC)? VAR t = r_type (NAME ',')* NAME ('=' expr)? ';'
+r_decl : (STATIC)? VAR r_type (NAME ',')* NAME ('=' expr)? ';'
        | 'proc' NAME  block;
 
 /* Statements */
