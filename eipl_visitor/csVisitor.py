@@ -54,10 +54,5 @@ class csVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by csParser#name.
-    def visitName(self, ctx:csParser.NameContext):
-        return self.visitChildren(ctx)
-
-
 
 del csParser

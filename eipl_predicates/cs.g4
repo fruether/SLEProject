@@ -9,12 +9,12 @@ variables.nameList = []
 variables.staticOpt = None
 }
 
-scope : 'begin' (r_decl)* r_stmt 'end';
+scope : 'begin' (statement)* r_stmt 'end';
 
 /* Declarations */
-r_decl : (static)? VAR t = r_type (name ',')* name ('=' expr)? ';'
-         {facts.create_fact("typeOF", $t.text, variables.nameList)}
-         {{facts.if_not_empty(variables.staticOpt, [("Static", variables.nameList)])}}
+statement : (static)? VAR type = r_type (identifier ',')* identifier ('=' expr)? ';'
+         {facts.create_fact("typeOF", $type.text, variables.IdentifierList)}
+         {{facts.if_not_empty(variables.staticOpt, [("Static", variables.IdentifierList)])}}
          {semantic.release_node()}
        | 'proc' NAME {semantic.add_scope($NAME.text)} block {semantic.remove_scope()};
 
@@ -43,9 +43,9 @@ factor : INT
         |  NAME
         | '(' expr ')' ;
 
-r_type: INTEGER;
+r_type: INTEGER | BOOLEAN;
 
-name returns [nameElement]:  NAME
+identifier returns [nameElement]:  NAME
 {nameElement = semantic.exec_block("name","List", $NAME.text)};
 
 static returns [staticElement]: STATIC

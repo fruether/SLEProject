@@ -1,6 +1,6 @@
 __author__ = 'freddy'
 
 
-nameList = []
+IdentifierList = []
 staticOpt = None
 blockList=[]

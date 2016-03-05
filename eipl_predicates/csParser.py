@@ -26,16 +26,16 @@ def serializedATN():
         buf.write("\6s\n\6\3\7\3\7\3\7\5\7x\n\7\3\7\3\7\3\7\5\7}\n\7\5\7")
         buf.write("\177\n\7\3\b\3\b\3\b\5\b\u0084\n\b\3\t\3\t\3\t\3\t\3\t")
         buf.write("\3\t\5\t\u008c\n\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f")
-        buf.write("\3\f\2\2\r\2\4\6\b\n\f\16\20\22\24\26\2\2\u009f\2\30\3")
-        buf.write("\2\2\2\4?\3\2\2\2\6`\3\2\2\2\bb\3\2\2\2\no\3\2\2\2\f~")
-        buf.write("\3\2\2\2\16\u0080\3\2\2\2\20\u008b\3\2\2\2\22\u008d\3")
-        buf.write("\2\2\2\24\u008f\3\2\2\2\26\u0092\3\2\2\2\30\34\7\3\2\2")
-        buf.write("\31\33\5\4\3\2\32\31\3\2\2\2\33\36\3\2\2\2\34\32\3\2\2")
-        buf.write("\2\34\35\3\2\2\2\35\37\3\2\2\2\36\34\3\2\2\2\37 \5\6\4")
-        buf.write("\2 !\7\4\2\2!\3\3\2\2\2\"$\5\26\f\2#\"\3\2\2\2#$\3\2\2")
-        buf.write("\2$%\3\2\2\2%&\7\32\2\2&,\5\22\n\2\'(\5\24\13\2()\7\5")
-        buf.write("\2\2)+\3\2\2\2*\'\3\2\2\2+.\3\2\2\2,*\3\2\2\2,-\3\2\2")
-        buf.write("\2-/\3\2\2\2.,\3\2\2\2/\62\5\24\13\2\60\61\7\6\2\2\61")
+        buf.write("\3\f\2\2\r\2\4\6\b\n\f\16\20\22\24\26\2\3\3\2\26\27\u009f")
+        buf.write("\2\30\3\2\2\2\4?\3\2\2\2\6`\3\2\2\2\bb\3\2\2\2\no\3\2")
+        buf.write("\2\2\f~\3\2\2\2\16\u0080\3\2\2\2\20\u008b\3\2\2\2\22\u008d")
+        buf.write("\3\2\2\2\24\u008f\3\2\2\2\26\u0092\3\2\2\2\30\34\7\3\2")
+        buf.write("\2\31\33\5\4\3\2\32\31\3\2\2\2\33\36\3\2\2\2\34\32\3\2")
+        buf.write("\2\2\34\35\3\2\2\2\35\37\3\2\2\2\36\34\3\2\2\2\37 \5\6")
+        buf.write("\4\2 !\7\4\2\2!\3\3\2\2\2\"$\5\26\f\2#\"\3\2\2\2#$\3\2")
+        buf.write("\2\2$%\3\2\2\2%&\7\32\2\2&,\5\22\n\2\'(\5\24\13\2()\7")
+        buf.write("\5\2\2)+\3\2\2\2*\'\3\2\2\2+.\3\2\2\2,*\3\2\2\2,-\3\2")
+        buf.write("\2\2-/\3\2\2\2.,\3\2\2\2/\62\5\24\13\2\60\61\7\6\2\2\61")
         buf.write("\63\5\n\6\2\62\60\3\2\2\2\62\63\3\2\2\2\63\64\3\2\2\2")
         buf.write("\64\65\7\7\2\2\65\66\b\3\1\2\66\67\b\3\1\2\678\b\3\1\2")
         buf.write("8@\3\2\2\29:\7\b\2\2:;\7\34\2\2;<\b\3\1\2<=\5\b\5\2=>")
@@ -60,7 +60,7 @@ def serializedATN():
         buf.write("\7\33\2\2\u0086\u008c\7\34\2\2\u0087\u0088\7\n\2\2\u0088")
         buf.write("\u0089\5\n\6\2\u0089\u008a\7\13\2\2\u008a\u008c\3\2\2")
         buf.write("\2\u008b\u0085\3\2\2\2\u008b\u0086\3\2\2\2\u008b\u0087")
-        buf.write("\3\2\2\2\u008c\21\3\2\2\2\u008d\u008e\7\27\2\2\u008e\23")
+        buf.write("\3\2\2\2\u008c\21\3\2\2\2\u008d\u008e\t\2\2\2\u008e\23")
         buf.write("\3\2\2\2\u008f\u0090\7\34\2\2\u0090\u0091\b\13\1\2\u0091")
         buf.write("\25\3\2\2\2\u0092\u0093\7\31\2\2\u0093\u0094\b\f\1\2\u0094")
         buf.write("\27\3\2\2\2\20\34#,\62?N`hrw|~\u0083\u008b")
@@ -91,7 +91,7 @@ class csParser ( Parser ):
                       "NAME", "WS" ]
 
     RULE_scope = 0
-    RULE_r_decl = 1
+    RULE_statement = 1
     RULE_r_stmt = 2
     RULE_block = 3
     RULE_expr = 4
@@ -99,11 +99,11 @@ class csParser ( Parser ):
     RULE_term = 6
     RULE_factor = 7
     RULE_r_type = 8
-    RULE_name = 9
+    RULE_identifier = 9
     RULE_static = 10
 
-    ruleNames =  [ "scope", "r_decl", "r_stmt", "block", "expr", "aexpr", 
-                   "term", "factor", "r_type", "name", "static" ]
+    ruleNames =  [ "scope", "statement", "r_stmt", "block", "expr", "aexpr", 
+                   "term", "factor", "r_type", "identifier", "static" ]
 
     EOF = Token.EOF
     T__0=1
@@ -152,11 +152,11 @@ class csParser ( Parser ):
             return self.getTypedRuleContext(csParser.R_stmtContext,0)
 
 
-        def r_decl(self, i:int=None):
+        def statement(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(csParser.R_declContext)
+                return self.getTypedRuleContexts(csParser.StatementContext)
             else:
-                return self.getTypedRuleContext(csParser.R_declContext,i)
+                return self.getTypedRuleContext(csParser.StatementContext,i)
 
 
         def getRuleIndex(self):
@@ -187,7 +187,7 @@ class csParser ( Parser ):
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.T__5) | (1 << csParser.STATIC) | (1 << csParser.VAR))) != 0):
                 self.state = 23
-                self.r_decl()
+                self.statement()
                 self.state = 28
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
@@ -204,7 +204,7 @@ class csParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class R_declContext(ParserRuleContext):
+    class StatementContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -215,11 +215,11 @@ class csParser ( Parser ):
         def VAR(self):
             return self.getToken(csParser.VAR, 0)
 
-        def name(self, i:int=None):
+        def identifier(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(csParser.NameContext)
+                return self.getTypedRuleContexts(csParser.IdentifierContext)
             else:
-                return self.getTypedRuleContext(csParser.NameContext,i)
+                return self.getTypedRuleContext(csParser.IdentifierContext,i)
 
 
         def r_type(self):
@@ -242,23 +242,23 @@ class csParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return csParser.RULE_r_decl
+            return csParser.RULE_statement
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterR_decl" ):
-                listener.enterR_decl(self)
+            if hasattr( listener, "enterStatement" ):
+                listener.enterStatement(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitR_decl" ):
-                listener.exitR_decl(self)
+            if hasattr( listener, "exitStatement" ):
+                listener.exitStatement(self)
 
 
 
 
-    def r_decl(self):
+    def statement(self):
 
-        localctx = csParser.R_declContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 2, self.RULE_r_decl)
+        localctx = csParser.StatementContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_statement)
         self._la = 0 # Token type
         try:
             self.state = 61
@@ -282,7 +282,7 @@ class csParser ( Parser ):
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt==1:
                         self.state = 37
-                        self.name()
+                        self.identifier()
                         self.state = 38
                         self.match(csParser.T__2) 
                     self.state = 44
@@ -290,7 +290,7 @@ class csParser ( Parser ):
                     _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
 
                 self.state = 45
-                self.name()
+                self.identifier()
                 self.state = 48
                 _la = self._input.LA(1)
                 if _la==csParser.T__3:
@@ -788,6 +788,9 @@ class csParser ( Parser ):
         def INTEGER(self):
             return self.getToken(csParser.INTEGER, 0)
 
+        def BOOLEAN(self):
+            return self.getToken(csParser.BOOLEAN, 0)
+
         def getRuleIndex(self):
             return csParser.RULE_r_type
 
@@ -806,10 +809,15 @@ class csParser ( Parser ):
 
         localctx = csParser.R_typeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_r_type)
+        self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 139
-            self.match(csParser.INTEGER)
+            _la = self._input.LA(1)
+            if not(_la==csParser.BOOLEAN or _la==csParser.INTEGER):
+                self._errHandler.recoverInline(self)
+            else:
+                self.consume()
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -818,7 +826,7 @@ class csParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class NameContext(ParserRuleContext):
+    class IdentifierContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -830,23 +838,23 @@ class csParser ( Parser ):
             return self.getToken(csParser.NAME, 0)
 
         def getRuleIndex(self):
-            return csParser.RULE_name
+            return csParser.RULE_identifier
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterName" ):
-                listener.enterName(self)
+            if hasattr( listener, "enterIdentifier" ):
+                listener.enterIdentifier(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitName" ):
-                listener.exitName(self)
+            if hasattr( listener, "exitIdentifier" ):
+                listener.exitIdentifier(self)
 
 
 
 
-    def name(self):
+    def identifier(self):
 
-        localctx = csParser.NameContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_name)
+        localctx = csParser.IdentifierContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 18, self.RULE_identifier)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 141

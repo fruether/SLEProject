@@ -14,9 +14,9 @@ def create_fact(type, *args):
             start = [args[0]]
         else:
             start = args[0]
+
         if isinstance(start[0], tuple):
             facts.extend([(type,) + x for x in start])
-
         else:
             facts.extend([(type, x) for x in start])
 

@@ -10,21 +10,21 @@ class FactExtractionVisitor(csVisitor):
 
     def visitR_decl(self, ctx):
         if ctx.block() is not None:
-            funcName = ctx.NAME()[0].getText()
+            funcName = ctx.IDENTIFIER()[0].getText()
             semantic.add_scope(funcName)
 
             self.walkContext(ctx)
             semantic.remove_scope()
         else:
-            variables = semantic.unwraplexims(ctx.NAME())
-            facts.if_not_empty(ctx.STATIC(), [("static", variables)])
-            facts.create_fact("typeOf", ctx.r_type().getText(), variables)
+            identifierList = semantic.unwraplexims(ctx.IDENTIFIER())
+            facts.if_not_empty(ctx.STATIC(), [("static", identifierList)])
+            facts.create_fact("typeOf", ctx.r_type().getText(), identifierList)
         return ctx.getText()
 
     def visitR_stmt(self, ctx):
         expression = ctx.getText()
         if expression.startswith("call"):
-            funcCall = ctx.NAME().getText()
+            funcCall = ctx.IDENTIFIER().getText()
             facts.create_fact("CallTo", semantic.get_current_scope(), funcCall)
         self.walkContext(ctx)
         return ctx.getText()

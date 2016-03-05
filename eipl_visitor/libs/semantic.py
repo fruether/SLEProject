@@ -4,8 +4,6 @@ scope_stack = []
 node_context = {}
 
 
-import libs.variables
-
 def remove_scope():
     global scope_stack
     scope_stack.pop()

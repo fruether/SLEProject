@@ -25,12 +25,12 @@ class csListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by csParser#r_decl.
-    def enterR_decl(self, ctx:csParser.R_declContext):
+    # Enter a parse tree produced by csParser#statement.
+    def enterStatement(self, ctx:csParser.StatementContext):
         pass
 
-    # Exit a parse tree produced by csParser#r_decl.
-    def exitR_decl(self, ctx:csParser.R_declContext):
+    # Exit a parse tree produced by csParser#statement.
+    def exitStatement(self, ctx:csParser.StatementContext):
         pass
 
 
@@ -97,12 +97,12 @@ class csListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by csParser#name.
-    def enterName(self, ctx:csParser.NameContext):
+    # Enter a parse tree produced by csParser#identifier.
+    def enterIdentifier(self, ctx:csParser.IdentifierContext):
         pass
 
-    # Exit a parse tree produced by csParser#name.
-    def exitName(self, ctx:csParser.NameContext):
+    # Exit a parse tree produced by csParser#identifier.
+    def exitIdentifier(self, ctx:csParser.IdentifierContext):
         pass
 
 

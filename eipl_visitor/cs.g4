@@ -4,16 +4,16 @@ grammar cs;
 scope : 'begin' (r_decl)* r_stmt 'end';
 
 /* Declarations */
-r_decl : (STATIC)? VAR t = r_type (NAME ',')* NAME ('=' expr)? ';'
-       | 'proc' NAME  block;
+r_decl : (STATIC)? VAR  r_type (IDENTIFIER ',')* IDENTIFIER ('=' expr)? ';'
+       | 'proc' IDENTIFIER  block;
 
 /* Statements */
 r_stmt : ';'
-    | NAME '=' expr ';'
+    | IDENTIFIER '=' expr ';'
     | 'if' '(' expr ')' r_stmt ( 'else' r_stmt )?
     | 'while' '(' expr ')' r_stmt
     | scope
-    | 'call' NAME ';'
+    | 'call' IDENTIFIER ';'
     | 'write' expr ';'
     | block
     ;
@@ -26,17 +26,16 @@ aexpr : term ( '+' aexpr )?
       ;
 term : factor ( '*' term )? ;
 factor : INT
-        |  NAME
+        |  IDENTIFIER
         | '(' expr ')' ;
 
-r_type: INTEGER;
+r_type: INTEGER | BOOLEAN | CHAR;
 
-name : NAME;
 BOOLEAN : 'bool';
 INTEGER : 'int';
 CHAR : 'char';
 STATIC : 'static';
 VAR : 'var';
 INT : [0-9]+;
-NAME : [a-z]+;
+IDENTIFIER : [a-z]+;
 WS : (' '|'\r'? '\n'|'\t')+ {self.skip();} ;

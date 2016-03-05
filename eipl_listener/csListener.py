@@ -89,12 +89,3 @@ class csListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by csParser#name.
-    def enterName(self, ctx:csParser.NameContext):
-        pass
-
-    # Exit a parse tree produced by csParser#name.
-    def exitName(self, ctx:csParser.NameContext):
-        pass
-
-

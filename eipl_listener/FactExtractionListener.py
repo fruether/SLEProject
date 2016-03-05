@@ -10,12 +10,13 @@ class FactExtractionListener(csListener):
 
     def enterR_decl(self, ctx):
         if ctx.block() is not None:
-            routine_name = ctx.NAME()[0].getText()
+            routine_name = ctx.IDENTIFIER()[0].getText()
             semantic.add_scope(routine_name)
         else:
-            variables = semantic.unwrapLexims(ctx.NAME())
-            facts.if_not_empty(ctx.STATIC(), [("static",variables)])
-            facts.create_fact("typeOf", ctx.r_type().getText() , variables)
+            identifierList = semantic.unwrapLexims(ctx.IDENTIFIER())
+            type = ctx.r_type().getText()
+            facts.create_fact("typeOf", type, identifierList)
+            facts.if_not_empty(ctx.STATIC(), [("static",identifierList)])
 
     def exitR_decl(self, ctx):
         if ctx.block() is not None:
@@ -24,7 +25,7 @@ class FactExtractionListener(csListener):
     def enterR_stmt(self, ctx):
         text = ctx.getText()
         if text[0:4] == "call":
-            name = ctx.NAME().getText()
+            name = ctx.IDENTIFIER().getText()
             facts.create_fact("callTo", semantic.get_current_scope(),  name)
 
     def enterBlock(self, ctx):
