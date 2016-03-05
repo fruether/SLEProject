@@ -26,7 +26,7 @@ def serializedATN():
         buf.write("\6s\n\6\3\7\3\7\3\7\5\7x\n\7\3\7\3\7\3\7\5\7}\n\7\5\7")
         buf.write("\177\n\7\3\b\3\b\3\b\5\b\u0084\n\b\3\t\3\t\3\t\3\t\3\t")
         buf.write("\3\t\5\t\u008c\n\t\3\n\3\n\3\13\3\13\3\13\3\f\3\f\3\f")
-        buf.write("\3\f\2\2\r\2\4\6\b\n\f\16\20\22\24\26\2\3\3\2\26\27\u009f")
+        buf.write("\3\f\2\2\r\2\4\6\b\n\f\16\20\22\24\26\2\3\3\2\26\30\u009f")
         buf.write("\2\30\3\2\2\2\4?\3\2\2\2\6`\3\2\2\2\bb\3\2\2\2\no\3\2")
         buf.write("\2\2\f~\3\2\2\2\16\u0080\3\2\2\2\20\u008b\3\2\2\2\22\u008d")
         buf.write("\3\2\2\2\24\u008f\3\2\2\2\26\u0092\3\2\2\2\30\34\7\3\2")
@@ -209,7 +209,7 @@ class csParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self.t = None # R_typeContext
+            self.rtype = None # R_typeContext
             self._NAME = None # Token
 
         def VAR(self):
@@ -275,7 +275,7 @@ class csParser ( Parser ):
                 self.state = 35
                 self.match(csParser.VAR)
                 self.state = 36
-                localctx.t = self.r_type()
+                localctx.rtype = self.r_type()
                 self.state = 42
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
@@ -302,8 +302,8 @@ class csParser ( Parser ):
 
                 self.state = 50
                 self.match(csParser.T__4)
-                facts.create_fact("typeOF", (None if localctx.t is None else self._input.getText((localctx.t.start,localctx.t.stop))), variables.nameList)
-                {facts.if_not_empty(variables.staticOpt, [("Static", variables.nameList)])}
+                facts.create_fact("typeOF", (None if localctx.rtype is None else self._input.getText((localctx.rtype.start,localctx.rtype.stop))), variables.IdentifierList)
+                {facts.if_not_empty(variables.staticOpt, [("Static", variables.IdentifierList)])}
                 semantic.release_node()
 
             elif token in [csParser.T__5]:
@@ -791,6 +791,9 @@ class csParser ( Parser ):
         def BOOLEAN(self):
             return self.getToken(csParser.BOOLEAN, 0)
 
+        def CHAR(self):
+            return self.getToken(csParser.CHAR, 0)
+
         def getRuleIndex(self):
             return csParser.RULE_r_type
 
@@ -814,7 +817,7 @@ class csParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 139
             _la = self._input.LA(1)
-            if not(_la==csParser.BOOLEAN or _la==csParser.INTEGER):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.BOOLEAN) | (1 << csParser.INTEGER) | (1 << csParser.CHAR))) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self.consume()
@@ -859,7 +862,7 @@ class csParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 141
             localctx._NAME = self.match(csParser.NAME)
-            nameElement = semantic.exec_block("name","List", (None if localctx._NAME is None else localctx._NAME.text))
+            nameElement = semantic.exec_block("Identifier","List", (None if localctx._NAME is None else localctx._NAME.text))
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
