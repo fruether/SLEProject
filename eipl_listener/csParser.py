@@ -73,7 +73,7 @@ class csParser ( Parser ):
                       "IDENTIFIER", "WS" ]
 
     RULE_scope = 0
-    RULE_r_decl = 1
+    RULE_r_statement = 1
     RULE_r_stmt = 2
     RULE_block = 3
     RULE_expr = 4
@@ -82,7 +82,7 @@ class csParser ( Parser ):
     RULE_factor = 7
     RULE_r_type = 8
 
-    ruleNames =  [ "scope", "r_decl", "r_stmt", "block", "expr", "aexpr", 
+    ruleNames =  [ "scope", "r_statement", "r_stmt", "block", "expr", "aexpr", 
                    "term", "factor", "r_type" ]
 
     EOF = Token.EOF
@@ -132,11 +132,11 @@ class csParser ( Parser ):
             return self.getTypedRuleContext(csParser.R_stmtContext,0)
 
 
-        def r_decl(self, i:int=None):
+        def r_statement(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(csParser.R_declContext)
+                return self.getTypedRuleContexts(csParser.R_statementContext)
             else:
-                return self.getTypedRuleContext(csParser.R_declContext,i)
+                return self.getTypedRuleContext(csParser.R_statementContext,i)
 
 
         def getRuleIndex(self):
@@ -167,7 +167,7 @@ class csParser ( Parser ):
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.T__5) | (1 << csParser.STATIC) | (1 << csParser.VAR))) != 0):
                 self.state = 19
-                self.r_decl()
+                self.r_statement()
                 self.state = 24
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
@@ -184,7 +184,7 @@ class csParser ( Parser ):
             self.exitRule()
         return localctx
 
-    class R_declContext(ParserRuleContext):
+    class R_statementContext(ParserRuleContext):
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -215,23 +215,23 @@ class csParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return csParser.RULE_r_decl
+            return csParser.RULE_r_statement
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterR_decl" ):
-                listener.enterR_decl(self)
+            if hasattr( listener, "enterR_statement" ):
+                listener.enterR_statement(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitR_decl" ):
-                listener.exitR_decl(self)
+            if hasattr( listener, "exitR_statement" ):
+                listener.exitR_statement(self)
 
 
 
 
-    def r_decl(self):
+    def r_statement(self):
 
-        localctx = csParser.R_declContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 2, self.RULE_r_decl)
+        localctx = csParser.R_statementContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_r_statement)
         self._la = 0 # Token type
         try:
             self.state = 50

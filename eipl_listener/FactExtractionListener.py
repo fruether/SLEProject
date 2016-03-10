@@ -8,7 +8,7 @@ class FactExtractionListener(csListener):
     def __init__(self):
         semantic.add_scope("main")
 
-    def enterR_decl(self, ctx):
+    def enterR_statement(self, ctx):
         if ctx.block() is not None:
             routine_name = ctx.IDENTIFIER()[0].getText()
             semantic.add_scope(routine_name)

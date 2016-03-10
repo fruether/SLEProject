@@ -1,10 +1,10 @@
 grammar cs;
 
 
-scope : 'begin' (r_decl)* r_stmt 'end';
+scope : 'begin' (r_statement)* r_stmt 'end';
 
 /* Declarations */
-r_decl : (STATIC)? VAR r_type (IDENTIFIER ',')* IDENTIFIER ('=' expr)? ';'
+r_statement : (STATIC)? VAR r_type (IDENTIFIER ',')* IDENTIFIER ('=' expr)? ';'
        | 'proc' IDENTIFIER  block;
 
 /* Statements */

@@ -17,12 +17,12 @@ class csListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by csParser#r_decl.
-    def enterR_decl(self, ctx:csParser.R_declContext):
+    # Enter a parse tree produced by csParser#r_statement.
+    def enterR_statement(self, ctx:csParser.R_statementContext):
         pass
 
-    # Exit a parse tree produced by csParser#r_decl.
-    def exitR_decl(self, ctx:csParser.R_declContext):
+    # Exit a parse tree produced by csParser#r_statement.
+    def exitR_statement(self, ctx:csParser.R_statementContext):
         pass
 
 
