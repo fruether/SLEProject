@@ -16,15 +16,15 @@ statement : (static)? VAR rtype = r_type (identifier ',')* identifier ('=' expr)
          {facts.create_fact("typeOF", $rtype.text, variables.IdentifierList)}
          {{facts.if_not_empty(variables.staticOpt, [("Static", variables.IdentifierList)])}}
          {semantic.release_node()}
-       | 'proc' NAME {semantic.add_scope($NAME.text)} block {semantic.remove_scope()};
+       | 'proc' IDENTIFIER {semantic.add_scope($IDENTIFIER.text)} block {semantic.remove_scope()};
 
 /* Statements */
 r_stmt : ';'
-    | NAME '=' expr ';'
+    | IDENTIFIER '=' expr ';'
     | 'if' '(' expr ')' r_stmt ( 'else' r_stmt )?
     | 'while' '(' expr ')' r_stmt
     | scope
-    | 'call' NAME ';' {facts.create_fact("callTo", semantic.get_current_scope(), $NAME.text)}
+    | 'call' IDENTIFIER ';' {facts.create_fact("callTo", semantic.get_current_scope(), $IDENTIFIER.text)}
     | 'write' expr ';'
     | block
     ;
@@ -40,13 +40,13 @@ aexpr : term ( '+' aexpr )?
       ;
 term : factor ( '*' term )? ;
 factor : INT
-        |  NAME
+        |  IDENTIFIER
         | '(' expr ')' ;
 
 r_type: INTEGER | BOOLEAN | CHAR;
 
-identifier returns [nameElement]:  NAME
-{nameElement = semantic.exec_block("Identifier","List", $NAME.text)};
+identifier returns [nameElement]:  IDENTIFIER
+{nameElement = semantic.exec_block("Identifier","List", $IDENTIFIER.text)};
 
 static returns [staticElement]: STATIC
 {staticElement = semantic.exec_block("static","Opt", $STATIC.text)};
@@ -58,5 +58,5 @@ CHAR : 'char';
 STATIC : 'static';
 VAR : 'var';
 INT : [0-9]+;
-NAME : [a-z]+;
+IDENTIFIER : [a-z]+;
 WS : (' '|'\r'? '\n'|'\t')+ {self.skip();} ;

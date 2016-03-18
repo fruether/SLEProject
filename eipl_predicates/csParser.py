@@ -88,7 +88,7 @@ class csParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "BOOLEAN", "INTEGER", "CHAR", "STATIC", "VAR", "INT", 
-                      "NAME", "WS" ]
+                      "IDENTIFIER", "WS" ]
 
     RULE_scope = 0
     RULE_statement = 1
@@ -131,7 +131,7 @@ class csParser ( Parser ):
     STATIC=23
     VAR=24
     INT=25
-    NAME=26
+    IDENTIFIER=26
     WS=27
 
     def __init__(self, input:TokenStream):
@@ -210,7 +210,7 @@ class csParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
             self.rtype = None # R_typeContext
-            self._NAME = None # Token
+            self._IDENTIFIER = None # Token
 
         def VAR(self):
             return self.getToken(csParser.VAR, 0)
@@ -234,8 +234,8 @@ class csParser ( Parser ):
             return self.getTypedRuleContext(csParser.ExprContext,0)
 
 
-        def NAME(self):
-            return self.getToken(csParser.NAME, 0)
+        def IDENTIFIER(self):
+            return self.getToken(csParser.IDENTIFIER, 0)
 
         def block(self):
             return self.getTypedRuleContext(csParser.BlockContext,0)
@@ -311,8 +311,8 @@ class csParser ( Parser ):
                 self.state = 55
                 self.match(csParser.T__5)
                 self.state = 56
-                localctx._NAME = self.match(csParser.NAME)
-                semantic.add_scope((None if localctx._NAME is None else localctx._NAME.text))
+                localctx._IDENTIFIER = self.match(csParser.IDENTIFIER)
+                semantic.add_scope((None if localctx._IDENTIFIER is None else localctx._IDENTIFIER.text))
                 self.state = 58
                 self.block()
                 semantic.remove_scope()
@@ -333,10 +333,10 @@ class csParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
-            self._NAME = None # Token
+            self._IDENTIFIER = None # Token
 
-        def NAME(self):
-            return self.getToken(csParser.NAME, 0)
+        def IDENTIFIER(self):
+            return self.getToken(csParser.IDENTIFIER, 0)
 
         def expr(self):
             return self.getTypedRuleContext(csParser.ExprContext,0)
@@ -383,10 +383,10 @@ class csParser ( Parser ):
                 self.state = 63
                 self.match(csParser.T__4)
 
-            elif token in [csParser.NAME]:
+            elif token in [csParser.IDENTIFIER]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 64
-                self.match(csParser.NAME)
+                self.match(csParser.IDENTIFIER)
                 self.state = 65
                 self.match(csParser.T__3)
                 self.state = 66
@@ -439,10 +439,10 @@ class csParser ( Parser ):
                 self.state = 85
                 self.match(csParser.T__11)
                 self.state = 86
-                localctx._NAME = self.match(csParser.NAME)
+                localctx._IDENTIFIER = self.match(csParser.IDENTIFIER)
                 self.state = 87
                 self.match(csParser.T__4)
-                facts.create_fact("callTo", semantic.get_current_scope(), (None if localctx._NAME is None else localctx._NAME.text))
+                facts.create_fact("callTo", semantic.get_current_scope(), (None if localctx._IDENTIFIER is None else localctx._IDENTIFIER.text))
 
             elif token in [csParser.T__12]:
                 self.enterOuterAlt(localctx, 7)
@@ -509,7 +509,7 @@ class csParser ( Parser ):
             self.state = 102
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.T__0) | (1 << csParser.T__4) | (1 << csParser.T__6) | (1 << csParser.T__10) | (1 << csParser.T__11) | (1 << csParser.T__12) | (1 << csParser.T__13) | (1 << csParser.NAME))) != 0):
+            while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << csParser.T__0) | (1 << csParser.T__4) | (1 << csParser.T__6) | (1 << csParser.T__10) | (1 << csParser.T__11) | (1 << csParser.T__12) | (1 << csParser.T__13) | (1 << csParser.IDENTIFIER))) != 0):
                 self.state = 97
                 localctx.s = self.r_stmt()
                 {semantic.exec_block("block","List", (None if localctx.s is None else self._input.getText((localctx.s.start,localctx.s.stop))))}
@@ -721,8 +721,8 @@ class csParser ( Parser ):
         def INT(self):
             return self.getToken(csParser.INT, 0)
 
-        def NAME(self):
-            return self.getToken(csParser.NAME, 0)
+        def IDENTIFIER(self):
+            return self.getToken(csParser.IDENTIFIER, 0)
 
         def expr(self):
             return self.getTypedRuleContext(csParser.ExprContext,0)
@@ -754,10 +754,10 @@ class csParser ( Parser ):
                 self.state = 131
                 self.match(csParser.INT)
 
-            elif token in [csParser.NAME]:
+            elif token in [csParser.IDENTIFIER]:
                 self.enterOuterAlt(localctx, 2)
                 self.state = 132
-                self.match(csParser.NAME)
+                self.match(csParser.IDENTIFIER)
 
             elif token in [csParser.T__7]:
                 self.enterOuterAlt(localctx, 3)
@@ -835,10 +835,10 @@ class csParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
             self.nameElement = None
-            self._NAME = None # Token
+            self._IDENTIFIER = None # Token
 
-        def NAME(self):
-            return self.getToken(csParser.NAME, 0)
+        def IDENTIFIER(self):
+            return self.getToken(csParser.IDENTIFIER, 0)
 
         def getRuleIndex(self):
             return csParser.RULE_identifier
@@ -861,8 +861,8 @@ class csParser ( Parser ):
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 141
-            localctx._NAME = self.match(csParser.NAME)
-            nameElement = semantic.exec_block("Identifier","List", (None if localctx._NAME is None else localctx._NAME.text))
+            localctx._IDENTIFIER = self.match(csParser.IDENTIFIER)
+            nameElement = semantic.exec_block("Identifier","List", (None if localctx._IDENTIFIER is None else localctx._IDENTIFIER.text))
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)

@@ -110,7 +110,7 @@ class csLexer(Lexer):
     STATIC = 23
     VAR = 24
     INT = 25
-    NAME = 26
+    IDENTIFIER = 26
     WS = 27
 
     modeNames = [ "DEFAULT_MODE" ]
@@ -122,13 +122,14 @@ class csLexer(Lexer):
             "'var'" ]
 
     symbolicNames = [ "<INVALID>",
-            "BOOLEAN", "INTEGER", "CHAR", "STATIC", "VAR", "INT", "NAME", 
+            "BOOLEAN", "INTEGER", "CHAR", "STATIC", "VAR", "INT", "IDENTIFIER", 
             "WS" ]
 
     ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
                   "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", "T__13", 
                   "T__14", "T__15", "T__16", "T__17", "T__18", "BOOLEAN", 
-                  "INTEGER", "CHAR", "STATIC", "VAR", "INT", "NAME", "WS" ]
+                  "INTEGER", "CHAR", "STATIC", "VAR", "INT", "IDENTIFIER", 
+                  "WS" ]
 
     grammarFileName = "cs.g4"
 
