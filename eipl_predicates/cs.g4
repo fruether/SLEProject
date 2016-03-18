@@ -13,7 +13,7 @@ scope : 'begin' (statement)* r_stmt 'end';
 
 /* Declarations */
 statement : (static)? VAR rtype = r_type (identifier ',')* identifier ('=' expr)? ';'
-         {facts.create_fact("typeOF", $rtype.text, variables.IdentifierList)}
+         {facts.create_fact("typeOF", variables.IdentifierList, $rtype.text)}
          {{facts.if_not_empty(variables.staticOpt, [("Static", variables.IdentifierList)])}}
          {semantic.release_node()}
        | 'proc' IDENTIFIER {semantic.add_scope($IDENTIFIER.text)} block {semantic.remove_scope()};

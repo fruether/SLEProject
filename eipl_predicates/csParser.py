@@ -302,7 +302,7 @@ class csParser ( Parser ):
 
                 self.state = 50
                 self.match(csParser.T__4)
-                facts.create_fact("typeOF", (None if localctx.rtype is None else self._input.getText((localctx.rtype.start,localctx.rtype.stop))), variables.IdentifierList)
+                facts.create_fact("typeOF", variables.IdentifierList, (None if localctx.rtype is None else self._input.getText((localctx.rtype.start,localctx.rtype.stop))))
                 {facts.if_not_empty(variables.staticOpt, [("Static", variables.IdentifierList)])}
                 semantic.release_node()
 
