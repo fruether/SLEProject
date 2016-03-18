@@ -15,7 +15,7 @@ class FactExtractionListener(csListener):
         else:
             identifierList = semantic.unwrapLexims(ctx.IDENTIFIER())
             type = ctx.r_type().getText()
-            facts.create_fact("typeOf", type, identifierList)
+            facts.create_fact("typeOf", identifierList, type)
             facts.if_not_empty(ctx.STATIC(), [("static",identifierList)])
 
     def exitR_decl(self, ctx):
