@@ -9,6 +9,6 @@ sh builds.sh : This command will execute all the three implemented ways (With an
 
 # Project:
 
-eipl_listener: Fact extraction with the help of ANTLR-listeners.
-eipls_predicates: Fact extraction implemented with the an annotated grammar
-eipl_visitor: Fact extraction implemented with ANTLR-Visitors
+* eipl_listener: Fact extraction with the help of ANTLR-listeners.
+* eipls_predicates: Fact extraction implemented with the an annotated grammar
+* eipl_visitor: Fact extraction implemented with ANTLR-Visitors
